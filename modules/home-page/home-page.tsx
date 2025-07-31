@@ -3,6 +3,7 @@
 import React from 'react';
 import { Covered_By_Your_Grace } from 'next/font/google';
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 import {
   FaBars,
   FaCheckCircle,
@@ -13,8 +14,7 @@ import {
   FaWhatsapp,
 } from 'react-icons/fa';
 import { Container, Text, Title } from '@mantine/core';
-import { useSession, signOut } from 'next-auth/react';
-import {  SignInButton, RegisterButton } from '@/components/home';
+import { RegisterButton, SignInButton } from '@/components/home';
 
 const covered = Covered_By_Your_Grace({
   subsets: ['latin'],
@@ -24,7 +24,6 @@ const covered = Covered_By_Your_Grace({
 export const HomePage: React.FC = () => {
   const [redirected, setRedirected] = React.useState(false);
   const { data: session, status } = useSession();
-
 
   React.useEffect(() => {
     console.log('Status:', status);
@@ -148,7 +147,7 @@ export const HomePage: React.FC = () => {
 
             {/* Botón de iniciar sesión (móvil) */}
             <div className="mt-4">
-              <SignInButton/>
+              <SignInButton />
             </div>
           </div>
         )}
@@ -172,12 +171,15 @@ export const HomePage: React.FC = () => {
             <RegisterButton />
 
             {/* Imagen del agricultor solo para ESCRITORIO */}
-            <div className="absolute bottom-0 right-0 mb-8 mr-8 hidden md:block" style={{ marginRight: '-20rem' }}>
+            <div
+              className="absolute bottom-0 right-0 mb-8 mr-8 hidden md:block"
+              style={{ marginRight: '-20rem' }}
+            >
               <img
                 src="/farmer-illustration.png"
                 alt="Agricultor"
                 className="w-80 md:w-[50rem] h-auto animate-fadeIn"
-                style={{maxHeight: '40rem'}}
+                style={{ maxHeight: '40rem' }}
               />
             </div>
           </div>
@@ -283,12 +285,11 @@ export const HomePage: React.FC = () => {
 
       <div className="w-full bg-[#FAF8F5] py-16">
         <Container>
-
           <div className="w-full bg-[#FAF8F5] py-16">
             <Container>
               <div className="text-center mb-12">
                 <Text
-                    className={`uppercase font-semibold mb-2 text-yellow-500 text-2xl ${covered.className}`}
+                  className={`uppercase font-semibold mb-2 text-yellow-500 text-2xl ${covered.className}`}
                 >
                   ¿Tienes alguna pregunta?
                 </Text>
@@ -300,7 +301,7 @@ export const HomePage: React.FC = () => {
                 {/* Información de contacto */}
                 <div className="bg-yellow-500 text-white py-6 px-8 rounded-md mb-4 md:mb-0">
                   <div className="flex items-center space-x-4">
-                    <img src="/phone-icon.png" alt="Teléfono" className="w-6 h-6"/>
+                    <img src="/phone-icon.png" alt="Teléfono" className="w-6 h-6" />
                     <div>
                       <Text className={`font-bold text-2xl ${covered.className}`}>Teléfono</Text>
                       <Text>313 725 70 16</Text>
@@ -309,7 +310,7 @@ export const HomePage: React.FC = () => {
                 </div>
                 <div className="bg-yellow-500 text-white py-6 px-8 rounded-md">
                   <div className="flex items-center space-x-4">
-                    <img src="/email-icon.png" alt="Correo" className="w-6 h-6"/>
+                    <img src="/email-icon.png" alt="Correo" className="w-6 h-6" />
                     <div>
                       <Text className={`font-bold text-2xl ${covered.className}`}>Correo</Text>
                       <Text>comercial@mercadoagro.com</Text>
@@ -327,10 +328,10 @@ export const HomePage: React.FC = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <Link
-                  href="/"
-                  className="text-2xl font-bold text-green-600 flex items-center space-x-2"
+                href="/"
+                className="text-2xl font-bold text-green-600 flex items-center space-x-2"
               >
-                <img src="/Header.png" alt="Mercado Agro"/>
+                <img src="/Header.png" alt="Mercado Agro" />
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
